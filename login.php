@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$_SESSION['usuario'] = $usuario['email'];
 				$_SESSION['login'] = true;
 
-
+				header('Location: /admin');
 
 			} else {
 				$errores[] = 'La password es incorrecto';
