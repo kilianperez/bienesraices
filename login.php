@@ -29,7 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		// echo '</pre>';
 			// exit;
 		if ($resultado->num_rows) {
-
+			// Revisar si existe password 
+			$usuario = mysqli_fetch_assoc($resultado);
+			// verificar si el password es correcto o no
+			$auth = password_verify($password, $usuario['password']);
+			var_dump($auth);
+			if ($auth) {
+				// el usuario es valido
+			} else {
+				$errores[] = 'La password es incorrecto';
+			}
+			
 		} else {
 			$errores[]= 'El usuario no existe';
 		}
