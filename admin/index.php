@@ -1,13 +1,11 @@
 <?php 
-    // iniciar la sesion del usuario 
-    session_start();
-    echo '<pre>';
-    var_dump($_SESSION);
-    echo '</pre>';
-    $auth = $_SESSION['login'];
+    require '../includes/funciones.php';
+    //iniciar session
+    $auth = estaAutenticado();
     if (!$auth) {
         header('Location: /');
     }
+
     //Importar la conexión
     require '../includes/config/database.php';
     $db = conectarDB();
@@ -44,7 +42,7 @@
     // Mostrar mensaje 
     $resultado = $_GET['resultado'] ?? null;
     // Incluir el temaplate
-    require '../includes/funciones.php';
+
     incluirTemplate('header');
 ?>
     <main class="contenedor">
