@@ -1,5 +1,13 @@
 <?php 
-
+    // iniciar la sesion del usuario 
+    session_start();
+    echo '<pre>';
+    var_dump($_SESSION);
+    echo '</pre>';
+    $auth = $_SESSION['login'];
+    if (!$auth) {
+        header('Location: /');
+    }
     //Importar la conexión
     require '../includes/config/database.php';
     $db = conectarDB();
