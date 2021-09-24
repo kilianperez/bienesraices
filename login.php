@@ -18,17 +18,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$errores[] = 'El email es obligatorio o no es válido';
 	}
 	if(!$password){
-	$errores[] = 'El password es obligatorio';
+		$errores[] = 'El password es obligatorio';
+	}
+	if (empty($errores)) {
+		// revisar que el usuario existe en la BBDD 
+		$query = "SELECT * FROM usuarios WHERE email = '${email}'";
+		$resultado = mysqli_query($db, $query);
+		// echo '<pre>';
+		// var_dump($resultado);
+		// echo '</pre>';
+			// exit;
+		if ($resultado->num_rows) {
+
+		} else {
+			$errores[]= 'El usuario no existe';
+		}
 	}
 
-	// revisar que el usuario existe en la BBDD 
-	$query = "SELECT * FROM usuarios WHERE email = ${email}";
-	$resultado = mysqli_query($db, $query);
-	if ($resultado) {
-		
-	} else {
-		$errores[]= 'El usuario no existe';
-	}
+
 	
 }
 
