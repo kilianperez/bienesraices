@@ -6,9 +6,9 @@ $errores = [];
 
 // ver los resultados del post 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	echo '<pre>';
-	var_dump($_POST);
-	echo '</pre>';
+	// echo '<pre>';
+	// var_dump($_POST);
+	// echo '</pre>';
 	// autenticar el usuario
 
 	$email = mysqli_real_escape_string($db, filter_var( $_POST['email'],FILTER_VALIDATE_EMAIL));
@@ -20,9 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if(!$password){
 	$errores[] = 'El password es obligatorio';
 	}
-	echo '<pre>';
-	var_dump($errores);
-	echo '</pre>';
+
+	// revisar que el usuario existe en la BBDD 
+	$query = "SELECT * FROM usuarios WHERE email = ${email}";
+	$resultado = mysqli_query($db, $query);
+	if ($resultado) {
+		
+	} else {
+		$errores[]= 'El usuario no existe';
+	}
+	
 }
 
 
