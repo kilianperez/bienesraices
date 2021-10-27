@@ -15,7 +15,7 @@ $resultado = mysqli_query($db,$query);
 $propiedad = mysqli_fetch_assoc($resultado);
 
 // validar que exista el id 
-if (!$resultados->num_rows) {
+if (!$resultado->num_rows) {
 	header('Location: /');
 }
 require 'includes/funciones.php';
